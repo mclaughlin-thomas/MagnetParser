@@ -41,8 +41,6 @@ static bool GetInfoHash( Magnet* pMagnet, const char* pURI ){
     strncpy(pMagnet->pInfoHash, start, length);
     pMagnet->pInfoHash[length] = '\0';
 
-    // printf("URI : %s\n", pMagnet->pInfoHash);
-
     return true;
 }
 

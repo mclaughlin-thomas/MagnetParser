@@ -18,22 +18,22 @@ void PrintMagnet( const Magnet* pMagnet ){
 }
 
 void FreeMagnet(Magnet* pMagnet) {
-    if (!pMagnet){
+    if ( !pMagnet ){
         return;
     }
 
-    if (pMagnet->pInfoHash) {
-        free(pMagnet->pInfoHash);
+    if ( pMagnet->pInfoHash ) {
+        free( pMagnet->pInfoHash );
         pMagnet->pInfoHash = NULL;
     }
 
-    if (pMagnet->pDisplayName) {
-        free(pMagnet->pDisplayName);
+    if ( pMagnet->pDisplayName ) {
+        free( pMagnet->pDisplayName );
         pMagnet->pDisplayName = NULL;
     }
 
-    if (pMagnet->pTracker) {
-        free(pMagnet->pTracker);
+    if ( pMagnet->pTracker ) {
+        free( pMagnet->pTracker );
         pMagnet->pTracker = NULL;
     }
 }

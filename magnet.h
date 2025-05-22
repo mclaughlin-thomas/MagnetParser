@@ -16,6 +16,7 @@ typedef struct  {
     char* pInfoHash;
     char* pDisplayName;
     char* pTracker;
+    short int numTrackers;
 } Magnet;
 
 

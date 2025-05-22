@@ -17,7 +17,7 @@ int main ( void )  {
 
     PrintMagnet( pMagnet );
 
-    FreeMagnet(pMagnet);
+    FreeMagnet( pMagnet );
 
     return 0;
 }
