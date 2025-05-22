@@ -9,14 +9,16 @@
 #include <stdio.h>
 #include <stdbool.h>   // for Boolean
 #include <stdio.h>     // for printf()
-#include <stdlib.h>
+#include <stdlib.h>    // malloc/free
+#include <stdint.h>    // special int types
+
 
 
 typedef struct  {
     char* pInfoHash;
     char* pDisplayName;
     char* pTracker;
-    short int numTrackers;
+    uint8_t numTrackers;
 } Magnet;
 
 
