@@ -43,10 +43,10 @@ void InsertNodeToBack( LinkedList* pList , ListNode* pNode )  {
 }
 
 void PrintList(LinkedList* pList) {
-    ListNode* pIter = pList->pFirstNode;
-    while (pIter != NULL) {
-        PrintNode(pIter);
-        pIter = pIter->pNext;
+    ListNode* Dummy = pList->pFirstNode;
+    while (Dummy){
+        PrintNode(Dummy);
+        Dummy= Dummy->pNext;
     }
 }
 
