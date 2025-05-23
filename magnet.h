@@ -5,19 +5,14 @@
 #ifndef _MAGNET_H_
 #define _MAGNET_H_
 
-
-#include <stdio.h>
-#include <stdbool.h>   // for Boolean
-#include <stdio.h>     // for printf()
-#include <stdlib.h>    // malloc/free
+#include "list.h"
 #include <stdint.h>    // special int types
-
 
 
 typedef struct  {
     char* pInfoHash;
     char* pDisplayName;
-    char* pTracker;
+    LinkedList* pTracker;
     uint8_t numTrackers;
 } Magnet;
 

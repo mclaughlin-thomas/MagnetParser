@@ -68,20 +68,45 @@ static bool GetDisplayName( Magnet* pMagnet, const char* pURI ){
 }
 static bool GetTracker( Magnet* pMagnet, const char* pURI ){
     
-    const char* start = strstr(pURI, "tr=");
-    if (!start){
+    const char* trackerString = strstr(pURI, "tr=");
+    if (!trackerString){
         return false;
     }
-    start += 3;
 
-   size_t length = strlen(start);  // from first tracker to end
+    pMagnet->pTracker = CreateLinkedList();
+    pMagnet->numTrackers = 0;
 
-    pMagnet->pTracker = malloc(length + 1);
-    if(!pMagnet->pTracker){
-        return false;
+    while((trackerString = strstr(trackerString, "tr=")) != NULL){
+
+        trackerString+=3;
+        const char* cutoff = strstr(trackerString, "&tr");
+
+        size_t length;
+        if (cutoff) { //cutoff found
+            length = (size_t)(cutoff - trackerString);
+            // This computes how many characters there are between trackerString and cutoff.
+        } else { //cutoff not found
+            length = strlen(trackerString);
+        }
+
+        char* trackerRecord = malloc(length + 1);
+
+        if (!trackerRecord){
+            return false;
+        }
+        strncpy(trackerRecord, trackerString, length);
+        trackerRecord[length] = '\0';
+
+        ListNode* node = CreateNode(trackerRecord);
+        InsertNodeToBack(pMagnet->pTracker, node);
+
+        pMagnet->numTrackers ++;
+
+        if (cutoff) {
+            trackerString = cutoff;  // Move to the '&tr' delimiter
+        } else {
+            trackerString += length; // No '&tr' found, move to the end of the string
+        }
     }
-    strncpy(pMagnet->pTracker, start, length);
-    pMagnet->pTracker[length] = '\0';
-
     return true;
 }

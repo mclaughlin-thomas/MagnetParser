@@ -5,16 +5,16 @@
 #include "magnet.h"
 
 
-// bool InitializeMagnet( Magnet* pMagnet, char* pNewInfoHash, char* pNewDisplayName, char* pNewTracker){
-//   pMagnet->pInfoHash = pNewInfoHash;
-//   pMagnet->pDisplayName = pNewDisplayName;
-//   pMagnet->pTracker = pNewTracker;
-// }
-
 void PrintMagnet( const Magnet* pMagnet ){
     printf("InfoHash: %s\n", pMagnet->pInfoHash);
     printf("DisplayName: %s\n", pMagnet->pDisplayName);
-    printf("Tracker: %s\n", pMagnet->pTracker);
+    
+    printf("Number of Trackers: %d\n", pMagnet->numTrackers);
+    ListNode* current = pMagnet->pTracker->pFirstNode;
+    while(current){
+        printf("Tracker: %s\n", current->pData);
+        current = current->pNext;
+    }
 }
 
 void FreeMagnet(Magnet* pMagnet) {
@@ -33,7 +33,16 @@ void FreeMagnet(Magnet* pMagnet) {
     }
 
     if ( pMagnet->pTracker ) {
-        free( pMagnet->pTracker );
+        ListNode* current = pMagnet->pTracker->pFirstNode;
+
+        while(current){
+            free(current->pData);
+            ListNode* next = current->pNext;
+            free(current);
+            current = next;
+        }
+        
+        free(pMagnet->pTracker);
         pMagnet->pTracker = NULL;
     }
 }
