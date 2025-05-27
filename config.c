@@ -2,8 +2,11 @@
 // 
 // 
 
+#define _POSIX_C_SOURCE 200809L
+
 #include "config.h"
 #include <stdlib.h>
+#include <unistd.h>    // for ssize_t (POSIX)
 #include <stdio.h>
 #include <sys/errno.h>  // for errno
 #include <string.h>     // for strerror()

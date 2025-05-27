@@ -5,6 +5,11 @@
 #include "parser.h"
 
 
+static bool GetInfoHash( Magnet* pMagnet, const char* pURI );
+static bool GetDisplayName( Magnet* pMagnet, const char* pURI );
+static bool GetTracker( Magnet* pMagnet, const char* pURI );
+
+
 bool ParseMagnet( Magnet* pMagnet, const char* pURI){
     
     if(GetInfoHash( pMagnet, pURI )==false){
@@ -66,6 +71,7 @@ static bool GetDisplayName( Magnet* pMagnet, const char* pURI ){
 
     return true;
 }
+
 static bool GetTracker( Magnet* pMagnet, const char* pURI ){
     
     const char* trackerString = strstr(pURI, "tr=");
